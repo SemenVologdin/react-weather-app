@@ -10,7 +10,7 @@ const CityCard = ({ city }) => {
 
   React.useEffect(() => {
     try {
-      fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city.en}&appid=${KEY}`)
+      fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city.en}&appid=${KEY}`)
         .then((response) => response.json())
         .then((data) => {
           setData(data);
