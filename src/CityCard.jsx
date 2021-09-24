@@ -15,7 +15,7 @@ const CityCard = ({ city }) => {
         .then((response) => response.json())
         .then((data) => {
           setData(data);
-          fetch(`http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`)
+          fetch(`https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`)
             .then((response) => response)
             .then((icon) => {
               setIcon(icon);
