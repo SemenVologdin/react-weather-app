@@ -3,7 +3,7 @@ import React from 'react';
 import Country from './Country';
 import data from './data.js';
 
-const Index = () => {
+const App = () => {
   return (
     <>
       <div className="wrapper">
@@ -30,4 +30,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default App;

@@ -5,17 +5,22 @@ import './loader.scss';
 
 const CityCard = ({ city }) => {
   const [data, setData] = React.useState({});
+  const [icon, setIcon] = React.useState({});
   const [loading, setLoading] = React.useState(true);
   const KEY = process.env.REACT_APP_KEY;
 
   React.useEffect(() => {
     try {
-      fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city.en}&appid=${KEY}`)
+      fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${KEY}&lang=ru`)
         .then((response) => response.json())
         .then((data) => {
           setData(data);
-          setLoading(false);
-          console.log(data);
+          fetch(`http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`)
+            .then((response) => response)
+            .then((icon) => {
+              setIcon(icon);
+              setLoading(false);
+            });
         })
         .catch((error) => console.log(error));
     } catch (e) {
@@ -26,8 +31,7 @@ const CityCard = ({ city }) => {
   return (
     <>
       <div className="city">
-        <h3>{city.ru}</h3>
-        {loading ? <div class="lds-dual-ring"></div> : <CityProps data={data} />}
+        {loading ? <div className="lds-dual-ring"></div> : <CityProps data={data} icon={icon} />}
       </div>
     </>
   );
